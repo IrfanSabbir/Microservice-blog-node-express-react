@@ -1,0 +1,30 @@
+1. kubectl version
+
+2. kubectl apply -f filename.yml //  (go to the infra/k8s directory, and chose the config filename)
+
+# List all pods in ps output format
+3. kubectl get pods
+
+
+If your pods are showing ErrImagePull, ErrImageNeverPull, or 
+ImagePullBackOff errors after running kubectl apply, 
+the simplest solution is to provide an imagePullPolicy to the pod.
+
+4. First, run kubectl delete -f infra/k8s/
+
+Then, update your pod manifest:
+
+spec:
+  containers:
+    - name: posts
+      image: irfanuddin/posts:0.0.1
+      imagePullPolicy: Never
+Then, run kubectl apply -f infra/k8s/
+
+This will ensure that Kubernetes will use the image built locally from your image cache instead of attempting to pull from a registry.
+
+7. kubectl exec -it posts sh // [posts -> pod_name] [sh -> cmd]
+
+8. kubectl logs posts // [posts -> pod name]
+
+9. kubectl describe pod  posts // [posts -> pod name]
