@@ -28,3 +28,6 @@ This will ensure that Kubernetes will use the image built locally from your imag
 8. kubectl logs posts // [posts -> pod name]
 
 9. kubectl describe pod  posts // [posts -> pod name]
+
+# recreate pod with deployment 
+10. kubectl rollout restart deployment posts-depl // [posts-depl -> name of the deployment ]
